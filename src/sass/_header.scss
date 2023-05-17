@@ -1,0 +1,78 @@
+* {
+  margin: 0;
+  font-family: 'Poppins';
+}
+
+a {
+  text-decoration: none;
+}
+
+.header {
+  background-color: #fff;
+  padding: 22px 22px;
+  border-bottom: 1px solid #eceef0;
+  display: flex;
+  justify-content: center;
+}
+
+.container {
+  width: 1200px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.logo {
+  display: flex;
+  align-items: start;
+  position: relative;
+  margin-right: 200px;
+  &__headline {
+    color: #0ac963;
+    font-size: 22px;
+    margin-top: 3px;
+    font-weight: 600;
+  }
+  &__description {
+    font-size: 10px;
+    font-weight: 500;
+    color: #888;
+    position: absolute;
+    top: 28px;
+    left: 67px;
+  }
+}
+
+.searchbar {
+  display: flex;
+  position: relative;
+}
+
+.searchbar__input {
+  color: #888;
+  font-size: 13px;
+  font-weight: 400;
+  width: 300px;
+  border: none;
+  outline: none;
+  border: solid #bdc5cc 1px;
+  border-radius: 5px;
+  padding: 9px 10px;
+
+  &:focus {
+    border: solid #0ac963 1px;
+  }
+}
+
+.button {
+  background-color: #fff;
+  border: none;
+  position: absolute;
+  top: 11px;
+  right: 6px;
+  cursor: pointer;
+}
+
+.icon {
+  height: 15px;
+}
