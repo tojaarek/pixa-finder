@@ -1,0 +1,113 @@
+* {
+  margin: 0;
+  font-family: "Poppins";
+}
+
+a {
+  text-decoration: none;
+}
+
+.header {
+  background-color: #fff;
+  padding: 22px 22px;
+  border-bottom: 1px solid #eceef0;
+  display: flex;
+  justify-content: center;
+}
+
+.container {
+  width: 1200px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.logo {
+  display: flex;
+  align-items: start;
+  position: relative;
+  margin-right: 200px;
+}
+.logo__headline {
+  color: #0ac963;
+  font-size: 22px;
+  margin-top: 3px;
+  font-weight: 600;
+}
+.logo__description {
+  font-size: 10px;
+  font-weight: 500;
+  color: #888;
+  position: absolute;
+  top: 28px;
+  left: 67px;
+}
+
+.searchbar {
+  display: flex;
+  position: relative;
+}
+
+.searchbar__input {
+  color: #888;
+  font-size: 13px;
+  font-weight: 400;
+  width: 300px;
+  border: none;
+  outline: none;
+  border: solid #bdc5cc 1px;
+  border-radius: 5px;
+  padding: 9px 10px;
+}
+.searchbar__input:focus {
+  border: solid #0ac963 1px;
+}
+
+.button {
+  background-color: #fff;
+  border: none;
+  position: absolute;
+  top: 11px;
+  right: 6px;
+  cursor: pointer;
+}
+
+.icon {
+  height: 15px;
+}
+
+.main {
+  padding-top: 30px;
+  background-color: #eceff1;
+  display: flex;
+  justify-content: center;
+}
+
+.gallery {
+  width: 1200px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: center;
+  align-items: center;
+}
+
+.photo-card {
+  background-color: #fff;
+  border: 2px solid black;
+  border-radius: 10px;
+  width: 273px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.photo-card__image {
+  margin-top: 10px;
+  width: 350px;
+  height: 167px;
+  border-radius: 10px;
+}
+
+.info {
+  display: flex;
+}/*# sourceMappingURL=main.css.map */

@@ -9,10 +9,12 @@ a {
 
 .header {
   background-color: #fff;
-  padding: 22px 22px;
+  padding: 22px 0;
   border-bottom: 1px solid #eceef0;
   display: flex;
   justify-content: center;
+  position: fixed;
+  width: 100%;
 }
 
 .container {
