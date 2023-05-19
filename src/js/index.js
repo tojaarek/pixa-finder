@@ -1,3 +1,4 @@
+'use strict';
 import axios from 'axios';
 import Notiflix from 'notiflix';
 
@@ -7,11 +8,6 @@ const resultsBox = document.querySelector('.gallery');
 const mainElement = document.querySelector('main');
 const loadMore = document.querySelector('.load-more');
 let page = 1;
-
-function handleButtonClick() {
-  page++;
-  searchImages();
-}
 
 function changeSpace(value) {
   return value.replace(/ /g, '+');
@@ -33,6 +29,7 @@ async function fetchImages(keyWords) {
     } else {
       Notiflix.Notify.success(`Hooray! We found ${data.totalHits} images.`);
       displayResults(data.hits);
+      page += 1;
     }
   } catch (error) {
     console.error(error);
@@ -47,19 +44,19 @@ function displayResults(images) {
     <img class="photo-card__image" src="${image.webformatURL}" alt="${image.tags}" loading="lazy" />
     <div class="info">
     <div class="info-box">
-    <img src="/likes.9ae6145a.png" alt="grey image of heart" width="17" />
+    <img src="https://i.ibb.co/b5XrpVp/likes.png" alt="grey image of heart" width="17" />
     <p class="info-item">${image.likes}</p> 
     </div>
     <div class="info-box">
-    <img src="/view.99bedb89.png" alt="grey image of heart" width="17" />
+    <img src="https://i.ibb.co/6WwrCD7/view.png" alt="grey image of heart" width="17" />
     <p class="info-item">${image.views}</p>
     </div>
     <div class="info-box">
-    <img src="/comment.c11bd1b1.png" alt="grey image of heart" width="17" />
+    <img src="https://i.ibb.co/dbn57bh/comment.png" alt="grey image of heart" width="17" />
     <p class="info-item">${image.comments}</p>
     </div>
     <div class="info-box">
-    <img src="/downloads.d3c0c063.png" alt="grey image of heart" width="17" />
+    <img src="https://i.ibb.co/fC7jH15/downloads.png" alt="grey image of heart" width="17" />
     <p class="info-item">${image.downloads}</p>
     </div>
     </div>
@@ -87,6 +84,11 @@ function searchImages(event) {
     );
     mainElement.classList.add('hide');
   }
+}
+
+function handleButtonClick() {
+  page++;
+  fetchImages();
 }
 
 form.addEventListener('submit', searchImages);
