@@ -16,6 +16,17 @@ function changeSpace(value) {
   return value.replace(/ /g, '+');
 }
 
+function smoothScroll() {
+  const { height: cardHeight } =
+    resultsBox.firstElementChild.getBoundingClientRect();
+  const scrollDistance = cardHeight * 2;
+
+  window.scrollBy({
+    top: scrollDistance,
+    behavior: 'smooth',
+  });
+}
+
 async function fetchImages(keyWords, page) {
   const keyWordsEncoded = changeSpace(keyWords);
   try {
@@ -75,6 +86,7 @@ function displayResults(images) {
     .join('');
   if (images.length > 0) {
     resultsBox.insertAdjacentHTML('beforeend', results);
+    smoothScroll();
   }
   mainElement.classList.remove('hide');
   const lightbox = new SimpleLightbox('.photo-card a', {});
