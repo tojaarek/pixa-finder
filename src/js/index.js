@@ -113,7 +113,6 @@ function handleButtonClick() {
   if (endOfResults) {
     return;
   }
-
   fetchImages(searchInput.value.trim(), page + 1)
     .then(images => {
       if (images.length > 0) {
