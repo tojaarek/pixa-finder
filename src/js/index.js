@@ -89,7 +89,10 @@ function displayResults(images) {
     smoothScroll();
   }
   mainElement.classList.remove('hide');
-  const lightbox = new SimpleLightbox('.photo-card a', {});
+  const lightbox = new SimpleLightbox('.photo-card a', {
+    nav: false,
+    showCounter: false,
+  });
   lightbox.refresh();
 }
 
