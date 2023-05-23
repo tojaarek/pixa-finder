@@ -1,6 +1,8 @@
 'use strict';
 import axios from 'axios';
 import Notiflix from 'notiflix';
+import SimpleLightbox from 'simplelightbox';
+import 'simplelightbox/dist/simple-lightbox.min.css';
 
 const form = document.querySelector('#search-form');
 const searchInput = document.querySelector('.searchbar__input');
@@ -14,7 +16,7 @@ function changeSpace(value) {
   return value.replace(/ /g, '+');
 }
 
-async function fetchImages(keyWords, page, endOfResults) {
+async function fetchImages(keyWords, page) {
   const keyWordsEncoded = changeSpace(keyWords);
   try {
     const response = await axios.get(
@@ -24,6 +26,16 @@ async function fetchImages(keyWords, page, endOfResults) {
     if (data.hits.length === 0) {
       return [];
     } else {
+      if (page === 1) {
+        Notiflix.Notify.success(`Hooray! We found ${data.totalHits} images.`);
+      }
+      if (page * 40 >= data.totalHits) {
+        endOfResults = true;
+        loadMore.classList.add('hide');
+        Notiflix.Notify.warning(
+          "We're sorry, but you've reached the end of search results."
+        );
+      }
       return data.hits;
     }
   } catch (error) {
@@ -37,7 +49,7 @@ function displayResults(images) {
     .map(image => {
       return `
     <div class="photo-card">
-    <img class="photo-card__image" src="${image.webformatURL}" alt="${image.tags}" loading="lazy" />
+    <a href="${image.largeImageURL}"><img class="photo-card__image" src="${image.webformatURL}" alt="${image.tags}" loading="lazy" /></a>
     <div class="info">
     <div class="info-box">
     <img src="https://i.ibb.co/b5XrpVp/likes.png" alt="grey image of heart" width="17" />
@@ -81,11 +93,9 @@ function searchImages(event) {
             'Sorry, there are no images matching your search query. Please try again.'
           );
         } else if (images.length < 40) {
-          Notiflix.Notify.success(`Hooray! We found ${images.length} images.`);
           loadMore.classList.add('hide');
           displayResults(images);
         } else {
-          Notiflix.Notify.success(`Hooray! We found ${images.length} images.`);
           loadMore.classList.remove('hide');
           displayResults(images);
         }
@@ -100,6 +110,10 @@ function searchImages(event) {
 }
 
 function handleButtonClick() {
+  if (endOfResults) {
+    return;
+  }
+
   fetchImages(searchInput.value.trim(), page + 1)
     .then(images => {
       if (images.length > 0) {
@@ -112,3 +126,6 @@ function handleButtonClick() {
 
 form.addEventListener('submit', searchImages);
 loadMore.addEventListener('click', handleButtonClick);
+
+const gallery = new SimpleLightbox('.photo-card a', {});
+gallery.refresh();
