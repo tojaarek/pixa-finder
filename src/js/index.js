@@ -77,6 +77,8 @@ function displayResults(images) {
     resultsBox.insertAdjacentHTML('beforeend', results);
   }
   mainElement.classList.remove('hide');
+  const lightbox = new SimpleLightbox('.photo-card a', {});
+  lightbox.refresh();
 }
 
 function searchImages(event) {
@@ -125,6 +127,3 @@ function handleButtonClick() {
 
 form.addEventListener('submit', searchImages);
 loadMore.addEventListener('click', handleButtonClick);
-
-const gallery = new SimpleLightbox('.photo-card a', {});
-gallery.refresh();
